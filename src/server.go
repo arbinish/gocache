@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	"golinks"
+	"gocache"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -15,7 +15,7 @@ var sync = make(chan bool)
 func GetKey(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	name := urlParams["key"]
-	val, err := golinks.Get(name)
+	val, err := gocache.Get(name)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		fmt.Fprintf(w, err.Error())
@@ -33,7 +33,7 @@ func SetKey(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, err.Error())
 	} else {
 		fmt.Fprintf(w, string(payload))
-		golinks.Set(name, string(payload))
+		gocache.Set(name, string(payload))
 		go func() {
 			sync <- true
 		}()
@@ -47,7 +47,7 @@ func InitSaveCycle(saveChan <-chan bool) {
 	for _ = range saveChan {
 		<-ticker
 		log.Println("Saving to disk ... ")
-		golinks.Save()
+		gocache.Save()
 	}
 	log.Println("Sync thread completed.")
 }

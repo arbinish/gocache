@@ -1,14 +1,14 @@
 package main
 
 import (
-	"golinks"
+	"gocache"
 	"log"
 )
 
 func main() {
 	keys := []string{"key", "yubikey", "foo", "bar"}
 	for _, k := range keys {
-		v, _ := golinks.Get(k)
+		v, _ := gocache.Get(k)
 		log.Println(k, "->", v)
 	}
 }

@@ -1,4 +1,4 @@
-package golinks
+package gocache
 
 import (
 	"bytes"
@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-const FNAME = "GOLINKS.gob"
+const FNAME = "gocache.gob"
 
 var ErrNotFound = errors.New("NotFound")
 var state = make(map[string]string)
