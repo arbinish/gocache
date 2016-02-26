@@ -1,6 +1,6 @@
-# golinks
+# gocache
 
-A simple key value store with Rest End points.
+A simple key value store with Rest end points.
 
 ## Supported operations:
 
@@ -15,7 +15,7 @@ A simple key value store with Rest End points.
 
 - Install Go1.5+ SDK
 - Clone repo
-- env GOPATH=$PWD go build src/server.go
+- run make. either `make mac` or `make linux` depending on your platform
 
 A pre-built mac [server.macosx] and linux [server.linux] binaries are already 
 available in the repo, for your testing.
